@@ -1,0 +1,22 @@
+{
+  "front_template_inner_path": "Front",
+  "admin_template_inner_path": "Admin",
+  "catalog_categories": [
+    {
+      "id": 1,
+      "name": "food & drink"
+    },
+    {
+      "id": 2,
+      "name": "thriller"
+    },
+    {
+      "id": 3,
+      "name": "short story"
+    },
+    {
+      "id": 4,
+      "name": "fantasy"
+    }
+  ]
+}
