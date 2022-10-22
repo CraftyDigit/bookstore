@@ -1,0 +1,98 @@
+body {
+    background-color: azure;
+}
+
+.header, .content {
+    padding: 20px;
+}
+
+.pagelink {
+    font-size: 2em ;
+    background-color: #9e9e9e33;;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.pagelink:hover {
+    background-color: cornflowerblue;
+}
+
+.catalog-action-add {
+    margin-bottom: 20px;
+}
+
+.catalog-action-add a {
+    font-size: 1.5em ;
+    background-color: #9e9e9e33;;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.catalog-action-add a:hover {
+    background-color: cornflowerblue;
+}
+
+.catalog table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.catalog table td, .catalog table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.catalog table tr:nth-child(even){background-color: #f2f2f2;}
+
+.catalog table tr:hover {background-color: #ddd;}
+
+.catalog table th {
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.catalog-product-id {
+    text-align: center;
+}
+
+.catalog-product-img img{
+    width: 40px;
+    height: 60px;
+}
+
+.product-form-edit {
+    margin-top: 20px;
+}
+
+.product-field {
+    width: 600px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.product-field input[type=submit] {
+    cursor: pointer;
+}
+
+.product-field-title {
+    font-size: 1.15em;
+    margin-bottom: 5px;
+}
+
+.product-field-note {
+    color: #3a3a3a;
+}
+
+.product-field img {
+    width: 120px;
+    height: 180px;
+}
+
+.product-field input, .product-field textarea {
+    width: 100%;
+    font-size: 1.15em;
+}

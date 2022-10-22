@@ -6,58 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simple Bookstore - <?php echo $pageTitle; ?></title>
+    <link rel="stylesheet" href="/App/Assets/Admin/css/style.css">
 </head>
 <body>
-    <style>
-        body {
-            background-color: azure;
-        }
-
-        .header, .content {
-            padding: 20px;
-        }
-
-        .pagelink {
-            font-size: 2em ;
-            background-color: #9e9e9e33;;
-            text-decoration: none;
-            color: black;
-            padding: 10px;
-        }
-
-        .pagelink:hover {
-            background-color: cornflowerblue;
-        }
-
-        .product-form-edit {
-            margin-top: 20px;
-        }
-
-        .product-field {
-            width: 600px;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        .product-field-title {
-            font-size: 1.15em;
-            margin-bottom: 5px;
-        }
-
-        .product-field-note {
-            color: #3a3a3a;
-        }
-
-        .product-field img {
-            width: 120px;
-            height: 180px;
-        }
-
-        .product-field input, .product-field textarea {
-            width: 100%;
-            font-size: 1.15em;
-        }
-    </style>
 
     <div class="header">
         <h1>"Simple Bookstore" - <?php echo $pageTitle; ?></h1>
@@ -91,7 +42,7 @@
             <div class="product-field">
                 <div class="product-field-title">Category ID</div>
                 <input type="text" name="product[categoryId]" value="<?php echo $product->categoryId; ?>" required="true">
-                <div class="product-field-note">Categories: <?php echo $categoryList; ?>  </div>
+                <div class="product-field-note">Categories: <?php echo $categoriesList; ?>  </div>
             </div>
             <input type="hidden" name="product[id]" value="<?php echo $product->id; ?>">
             <input type="hidden" name="point" value="<?php echo $product->id ? 'product_save' : 'product_add'; ?>">

@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Framework;
+namespace App\Core;
 
 class Controller
 {
+    /**
+     * @var string
+     */
+    public string $templateName = '';
 
-    public $templateName = '';
-    public $isAdminController = false;
+    /**
+     * @var bool
+     */
+    public bool $isAdminController = false;
 
     public function __construct()
     {
@@ -16,7 +22,7 @@ class Controller
     /**
      * @return string
      */
-    private function getDefaultTemplateName()
+    private function getDefaultTemplateName(): string
     {
         $classFullName = get_class($this);
         $className = explode('\\',$classFullName)[sizeof(explode('\\',$classFullName)) - 1];
@@ -27,7 +33,7 @@ class Controller
     /**
      * @return void
      */
-    public function render()
+    public function render(): void
     {
         $this->output();
     }
@@ -37,12 +43,11 @@ class Controller
      * @param array $variables
      * @return void
      */
-    protected function output(string $templateName = null, array $variables = [])
+    protected function output(string $templateName = null, array $variables = []): void
     {
         $config = Config::getInstance();
         $templateName = $templateName ?: $this->templateName;
-        $templateInnerDirectory = $this->isAdminController ?
-            $config->admin_template_inner_path : $config->front_template_inner_path;
+        $templateInnerDirectory = $this->isAdminController ? 'Admin' : 'Front';
         $templateFullName = dirname(__DIR__) . '/Templates/' . $templateInnerDirectory .'/'. $templateName . '.php';
         $output = NULL;
 

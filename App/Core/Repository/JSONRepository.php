@@ -1,16 +1,29 @@
 <?php
 
-namespace App\Framework;
+namespace App\Core\Repository;
 
-class Repository
+use App\Core\Model;
+use Exception;
+
+class JSONRepository extends AbstractRepository
 {
-    private $dataFileName = '';
-    private $data = [];
+    /**
+     * Name of JSON file containing data
+     *
+     * @var string
+     */
+    private string $dataFileName = '';
 
-    public $autoSave = true;
+    /**
+     * Array of items loaded from JSON file
+     *
+     * @var array
+     */
+    private array $data = [];
 
     /**
      * @param string $dataFileName
+     * @throws Exception
      */
     public function __construct(string $dataFileName)
     {
@@ -34,9 +47,9 @@ class Repository
 
     /**
      * @param int $itemId
-     * @return Model|false
+     * @return Model|null
      */
-    public function getOneById(int $itemId)
+    public function getOneById(int $itemId): ?Model
     {
         foreach ($this->data['items'] as $dataItem) {
             if ($dataItem['id'] == $itemId) {
@@ -44,13 +57,13 @@ class Repository
             };
         }
 
-        return false;
+        return null;
     }
 
     /**
      * @return int[]|string[]
      */
-    public function getScheme()
+    public function getScheme(): array
     {
         return array_keys($this->data['items'][0]);
     }
@@ -73,7 +86,7 @@ class Repository
      * @param Model $item
      * @return void
      */
-    public function setDataItem(Model $item)
+    public function setDataItem(Model $item): void
     {
         for ($i = 0; $i < sizeof($this->data['items']); $i++) {
             if ($this->data['items'][$i]['id'] == $item->id) {
@@ -114,12 +127,11 @@ class Repository
      * @param Model $item
      * @return void
      */
-    public function deleteDataItem(Model $item)
+    public function deleteDataItem(Model $item): void
     {
         for ($i = 0; $i < sizeof($this->data['items']); $i++) {
             if ($this->data['items'][$i]['id'] == $item->id) {
                 array_splice($this->data['items'], $i, 1);
-                //unset($this->data['items'][$i]);
             }
         }
 
@@ -131,7 +143,7 @@ class Repository
     /**
      * @return void
      */
-    public function saveData()
+    public function saveData(): void
     {
         $file = $this->getDataFileFullName();
 
@@ -140,13 +152,16 @@ class Repository
 
     /**
      * @return void
+     * @throws Exception
      */
-    private function loadData()
+    private function loadData(): void
     {
         $file = $this->getDataFileFullName();
 
         if (file_exists($file)) {
             $this->data = json_decode(file_get_contents($file), 1);
+        } else {
+            throw new Exception('JSON data file does not exist.');
         }
     }
 
@@ -155,6 +170,6 @@ class Repository
      */
     private function getDataFileFullName(): string
     {
-        return dirname(__DIR__) . '/Data/' . $this->dataFileName . '.json';
+        return dirname(__DIR__, 2) . '/Data/' . $this->dataFileName . '.json';
     }
 }

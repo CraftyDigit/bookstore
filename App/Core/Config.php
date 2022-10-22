@@ -1,11 +1,18 @@
 <?php
 
-namespace App\Framework;
+namespace App\Core;
 
 class Config
 {
-    private static $instance = null;
-    private $parameters = [];
+    /**
+     * @var Config|null
+     */
+    private static ?Config $instance = null;
+
+    /**
+     * @var array
+     */
+    private array $parameters = [];
 
     private function __construct()
     {
@@ -13,9 +20,9 @@ class Config
     }
 
     /**
-     * @return Config|null
+     * @return Config
      */
-    public static function getInstance()
+    public static function getInstance(): Config
     {
         if (self::$instance == null)
         {
@@ -37,9 +44,9 @@ class Config
     /**
      * @return void
      */
-    private function loadParameters()
+    private function loadParameters(): void
     {
-        $configFile = dirname(__DIR__) . '/Framework/' . 'config.json';
+        $configFile = dirname(__DIR__) . '/config.json';
 
         if (file_exists($configFile)) {
             $this->parameters = json_decode(file_get_contents($configFile), 1);
