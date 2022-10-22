@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Front;
 
-use App\Framework\Controller;
+use App\Core\Controller;
 
 class HomepageController extends Controller
 {
-
     /**
      * @return void
      */
-    public function render()
+    public function render(): void
     {
         $templateData['pageTitle'] = 'Homepage';
 
         $this->output('homepage', $templateData);
     }
-
 }

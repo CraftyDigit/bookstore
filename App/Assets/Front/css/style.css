@@ -1,0 +1,58 @@
+body {
+    background-color: azure;
+}
+
+.header, .content {
+    padding: 20px;
+}
+
+.pagelink {
+    font-size: 2em ;
+    background-color: #9e9e9e33;;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.pagelink:hover {
+    background-color: cornflowerblue;
+}
+
+.catalog {
+    margin: 40px 0;
+}
+
+.product-category-title {
+    background-color: #04AA6D;
+    color: white;
+    padding: 8px;
+}
+
+.product-category {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product {
+    width: 200px;
+}
+
+.product-image{
+    width: 200px;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.product-image img{
+    width: 100%;
+    height: 100%;
+}
+
+.product-name, .product-price {
+    text-align: center;
+}
+
+.product-price {
+    font-weight: bold;
+}

@@ -6,68 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simple Bookstore - <?php echo $pageTitle; ?></title>
+    <link rel="stylesheet" href="/App/Assets/Front/css/style.css">
 </head>
 <body>
-
-    <style>
-        body {
-            background-color: azure;
-        }
-
-        .header, .content {
-            padding: 20px;
-        }
-
-        .pagelink {
-            font-size: 2em ;
-            background-color: #9e9e9e33;;
-            text-decoration: none;
-            color: black;
-            padding: 10px;
-        }
-
-        .pagelink:hover {
-            background-color: cornflowerblue;
-        }
-
-        .catalog {
-            margin: 40px 0;
-        }
-
-        .product-category-title {
-            background-color: #04AA6D;
-            color: white;
-            padding: 8px;
-        }
-
-        .product-category {
-            display: flex;
-            gap: 20px;
-        }
-
-        .product {
-            width: 200px;
-        }
-
-        .product-image{
-            width: 200px;
-            height: 300px;
-            margin-bottom: 20px;
-        }
-
-        .product-image img{
-            width: 100%;
-            height: 100%;
-        }
-
-        .product-name, .product-price {
-            text-align: center;
-        }
-
-        .product-price {
-            font-weight: bold;
-        }
-    </style>
 
     <div class="header">
         <h1>"Simple Bookstore" - <?php echo $pageTitle; ?></h1>
@@ -76,12 +17,11 @@
     <div class="content">
         <a class="pagelink" href="/">Homepage </a>
         <div class="catalog">
-        <?php foreach ($categories as $categoryId => $categoryData) { ?>
-            <h3 class="product-category-title"><?php echo ucfirst($categoryData['name']); ?></h3>
+        <?php foreach ($categories as $category) { ?>
+            <h3 class="product-category-title"><?php echo ucfirst($category->name); ?></h3>
             <div class="product-category">
-            <?php /** @var \App\Framework\Model $product */
-            foreach ($products as $product) {
-                if ($categoryData['id'] == $product->categoryId) { ?>
+            <?php foreach ($products as $product) {
+                if ($category->id == $product->categoryId) { ?>
                     <div class="product">
                         <div class="product-image">
                             <img src="<?php echo $product->image ?>" alt="product-image">

@@ -1,1 +1,84 @@
-{"items":[{"id":1,"name":"Snackable Bakes: 100 Easy-Peasy Recipes","image":"https:\/\/prodimage.images-bn.com\/pimages\/9781682687376_p0_v8_s192x300.jpg","description":"What is a snackable bake? An utterly scrumptious, round-the-clock treat that can be assembled in 20 minutes or less!","price":"21.99","categoryId":1},{"id":2,"name":"Fairy Tale Cupcakes","image":"https:\/\/prodimage.images-bn.com\/pimages\/9798986503400_p0_v1_s192x300.jpg","description":"Long running New York Times bestselling series features childhood friends Melanie Cooper, Angie DeLaura, and Tate Harper as they cook up yummy cupcakes","price":"14.22","categoryId":"1"},{"id":3,"name":"Dessert Person: Recipes and Guidance","image":"https:\/\/prodimage.images-bn.com\/pimages\/9781984826961_p0_v8_s192x300.jpg","description":"There are no 'just cooks' out there, only bakers who haven't yet been converted. I am a dessert person, and we are all dessert people.","price":"31.50","categoryId":1},{"id":4,"name":"Kingdom of the Feared","image":"https:\/\/prodimage.images-bn.com\/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B\/pimages\/9780316479882_p0_v2%5D&call=url%5Bfile:common\/decodeProduct.chain%5D","description":"This unmissable conclusion to Kerri Maniscalco\u2019s stunning Kingdom of the Wicked series follows Emilia and the Prince of Wrath on one final journey that reveals shocking truths readers will never see coming.","price":"12.73","categoryId":"4"},{"id":5,"name":"Night of the Living Rez","image":"https:\/\/prodimage.images-bn.com\/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B\/pimages\/9781953534187_p0_v4%5D&call=url%5Bfile:common\/decodeProduct.chain%5D","description":"Set in a Native community in Maine, Night of the Living Rez is a riveting debut collection about what it means to be Penobscot in the twenty-first century and what it means to live, to survive, and to persevere after tragedy.","price":"13.99","categoryId":3},{"id":6,"name":"Dark and Shallow Lies","image":"https:\/\/prodimage.images-bn.com\/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B\/pimages\/9780593403983_p0_v2%5D&call=url%5Bfile:common\/decodeProduct.chain%5D","description":"A totally engrossing small-town mystery about what happens when you finally dig up long-buried secrets.","price":"9.99","categoryId":2},{"id":7,"name":"House of Hollow","image":"https:\/\/prodimage.images-bn.com\/pimages\/9780593110362_p0_v3_s192x300.jpg","description":"Laced with magical realism, House of Hollow is the dark, haunting tale of three sisters shrouded in more mystery than they can even imagine.","price":"8.49","categoryId":2},{"id":8,"name":"The Project","image":"https:\/\/prodimage.images-bn.com\/pimages\/9781250105738_p0_v2_s192x300.jpg","description":"In this compelling and absorbing YA novel, two sisters make the most painful of choices based on their love for one another.","price":"16.99","categoryId":2},{"id":9,"name":"Calculated","image":"https:\/\/prodimage.images-bn.com\/pimages\/9781953944504_p0_v3_s192x300.jpg","description":"Set in Shanghai and Seattle, Calculated is a gritty, modern day blend of Count of Monte Cristo and Mission Impossible.","price":"22.99","categoryId":2},{"id":10,"name":"Summer's Edge","image":"https:\/\/prodimage.images-bn.com\/pimages\/9781534493117_p0_v2_s192x300.jpg","description":"Twisting back and forth through time and various perspectives, this edge-of-your-seat thriller about a group of friends spending one last summer at the lake culminates in a shocking ending that will leave readers reeling.","price":"11.33","categoryId":2}]}
+{
+  "items":[
+    {
+      "id":1,
+      "name":"Snackable Bakes: 100 Easy-Peasy Recipes",
+      "image":"https:\/\/prodimage.images-bn.com\/pimages\/9781682687376_p0_v8_s192x300.jpg",
+      "description":"What is a snackable bake? An utterly scrumptious, round-the-clock treat that can be assembled in 20 minutes or less!",
+      "price":"21.99",
+      "categoryId":1
+    },
+    {
+      "id":2,
+      "name":"Fairy Tale Cupcakes",
+      "image":"https:\/\/prodimage.images-bn.com\/pimages\/9798986503400_p0_v1_s192x300.jpg",
+      "description":"Long running New York Times bestselling series features childhood friends Melanie Cooper, Angie DeLaura, and Tate Harper as they cook up yummy cupcakes",
+      "price":"14.22",
+      "categoryId":"1"
+    },
+    {
+      "id":3,
+      "name":"Dessert Person: Recipes and Guidance",
+      "image":"https:\/\/prodimage.images-bn.com\/pimages\/9781984826961_p0_v8_s192x300.jpg",
+      "description":"There are no 'just cooks' out there, only bakers who haven't yet been converted. I am a dessert person, and we are all dessert people.",
+      "price":"31.50",
+      "categoryId":1
+    },
+    {
+      "id":4,
+      "name":"Kingdom of the Feared",
+      "image":"https:\/\/prodimage.images-bn.com\/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B\/pimages\/9780316479882_p0_v2%5D&call=url%5Bfile:common\/decodeProduct.chain%5D",
+      "description":"This unmissable conclusion to Kerri Maniscalco\u2019s stunning Kingdom of the Wicked series follows Emilia and the Prince of Wrath on one final journey that reveals shocking truths readers will never see coming.",
+      "price":"12.73",
+      "categoryId":"4"
+    },
+    {
+      "id":5,
+      "name":"Night of the Living Rez",
+      "image":"https:\/\/prodimage.images-bn.com\/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B\/pimages\/9781953534187_p0_v4%5D&call=url%5Bfile:common\/decodeProduct.chain%5D",
+      "description":"Set in a Native community in Maine, Night of the Living Rez is a riveting debut collection about what it means to be Penobscot in the twenty-first century and what it means to live, to survive, and to persevere after tragedy.",
+      "price":"13.99",
+      "categoryId":3
+    },
+    {
+      "id":6,
+      "name":"Dark and Shallow Lies",
+      "image":"https:\/\/prodimage.images-bn.com\/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B\/pimages\/9780593403983_p0_v2%5D&call=url%5Bfile:common\/decodeProduct.chain%5D",
+      "description":"A totally engrossing small-town mystery about what happens when you finally dig up long-buried secrets.",
+      "price":"9.99",
+      "categoryId":2
+    },
+    {
+      "id":7,
+      "name":"House of Hollow",
+      "image":"https:\/\/prodimage.images-bn.com\/pimages\/9780593110362_p0_v3_s192x300.jpg",
+      "description":"Laced with magical realism, House of Hollow is the dark, haunting tale of three sisters shrouded in more mystery than they can even imagine.",
+      "price":"8.49",
+      "categoryId":2
+    },
+    {
+      "id":8,
+      "name":"The Project",
+      "image":"https:\/\/prodimage.images-bn.com\/pimages\/9781250105738_p0_v2_s192x300.jpg",
+      "description":"In this compelling and absorbing YA novel, two sisters make the most painful of choices based on their love for one another.",
+      "price":"16.99",
+      "categoryId":2
+    },
+    {
+      "id":9,
+      "name":"Calculated",
+      "image":"https:\/\/prodimage.images-bn.com\/pimages\/9781953944504_p0_v3_s192x300.jpg",
+      "description":"Set in Shanghai and Seattle, Calculated is a gritty, modern day blend of Count of Monte Cristo and Mission Impossible.",
+      "price":"22.99",
+      "categoryId":2
+    },
+    {
+      "id":10,
+      "name":"Summer's Edge",
+      "image":"https:\/\/prodimage.images-bn.com\/pimages\/9781534493117_p0_v2_s192x300.jpg",
+      "description":"Twisting back and forth through time and various perspectives, this edge-of-your-seat thriller about a group of friends spending one last summer at the lake culminates in a shocking ending that will leave readers reeling.",
+      "price":"11.33",
+      "categoryId":2
+    }
+  ]
+}

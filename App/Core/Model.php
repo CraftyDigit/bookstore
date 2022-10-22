@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Framework;
+namespace App\Core;
 
 class Model
 {
-    private $data = [];
+    /**
+     * @var array
+     */
+    private array $data;
 
     /**
-     * @param $data
+     * @param array $data
      */
-    public function __construct($data)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }
@@ -28,7 +31,7 @@ class Model
      * @param $value
      * @return void
      */
-    public function __set($name, $value)
+    public function __set($name, $value): void
     {
         $this->data[$name] = $value;
     }
@@ -36,8 +39,8 @@ class Model
     /**
      * @return array
      */
-    public function getData() {
+    public function getData(): array
+    {
         return $this->data;
     }
-
 }

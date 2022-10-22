@@ -1,7 +1,5 @@
 {
-  "front_template_inner_path": "Front",
-  "admin_template_inner_path": "Admin",
-  "catalog_categories": [
+  "items": [
     {
       "id": 1,
       "name": "food & drink"

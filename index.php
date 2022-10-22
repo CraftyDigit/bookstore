@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Framework\Core;
+use App\Core\Kernel;
 
-require_once __DIR__ . '/App/Framework/autoload.php';
+require_once __DIR__ . '/App/Core/Kernel.php';
 
-Core::start();
+Kernel::start();

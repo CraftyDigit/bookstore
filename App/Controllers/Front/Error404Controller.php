@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Front;
 
-use App\Framework\Controller;
+use App\Core\Controller;
 
 class Error404Controller extends Controller
 {
-
     /**
      * @return void
      */
-    public function render()
+    public function render(): void
     {
         $this->output('404');
     }
-
 }
