@@ -12,18 +12,19 @@ class RepositoryManager
      */
     protected string $dataSourceType = '';
 
-    public function __construct()
+    public function __construct(string $dataSourceType = null)
     {
         $config = Config::getInstance();
-        $this->dataSourceType = $config->data_source_type;
+
+        $this->dataSourceType = $dataSourceType ?? $config->data_source_type;
     }
 
     /**
      * @param string $dataSourceName
-     * @return AbstractRepository
+     * @return RepositoryInterface
      * @throws Exception
      */
-    public function getRepository(string $dataSourceName): AbstractRepository
+    public function getRepository(string $dataSourceName): RepositoryInterface
     {
         $repositoryClass = __NAMESPACE__ .'\\'. $this->dataSourceType . 'Repository';
 

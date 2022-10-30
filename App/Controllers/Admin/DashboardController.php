@@ -71,7 +71,7 @@ class DashboardController extends Controller
             $product->$fieldName = $fieldValue;
         }
 
-        $productsRepo->setDataItem($product);
+        $productsRepo->updateItem($product);
 
         $this->renderItem($product->id);
     }
@@ -85,7 +85,7 @@ class DashboardController extends Controller
         $productsRepo =  $this->repositoryManager->getRepository('products');
 
         $product = new Model($_POST['product']);
-        $product = $productsRepo->addDataItem($product);
+        $product = $productsRepo->addItem($product);
 
         $this->renderItem($product->id);
     }
@@ -100,7 +100,7 @@ class DashboardController extends Controller
         $product = $productsRepo->getOneById($_POST['product']['id']);
 
         if ($product) {
-            $productsRepo->deleteDataItem($product);
+            $productsRepo->deleteItem($product);
         }
 
         $this->renderList();
