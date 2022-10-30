@@ -5,7 +5,7 @@ namespace App\Core\Repository;
 use App\Core\Model;
 use Exception;
 
-class JSONRepository extends AbstractRepository
+class JSONRepository implements RepositoryInterface
 {
     /**
      * Name of JSON file containing data
@@ -20,6 +20,11 @@ class JSONRepository extends AbstractRepository
      * @var array
      */
     private array $data = [];
+
+    /**
+     * @var bool
+     */
+    public bool $autoSave = true;
 
     /**
      * @param string $dataFileName
@@ -86,7 +91,7 @@ class JSONRepository extends AbstractRepository
      * @param Model $item
      * @return void
      */
-    public function setDataItem(Model $item): void
+    public function updateItem(Model $item): void
     {
         for ($i = 0; $i < sizeof($this->data['items']); $i++) {
             if ($this->data['items'][$i]['id'] == $item->id) {
@@ -103,7 +108,7 @@ class JSONRepository extends AbstractRepository
      * @param Model $item
      * @return Model
      */
-    public function addDataItem(Model $item): Model
+    public function addItem(Model $item): Model
     {
         $maxId = 0;
 
@@ -127,7 +132,7 @@ class JSONRepository extends AbstractRepository
      * @param Model $item
      * @return void
      */
-    public function deleteDataItem(Model $item): void
+    public function deleteItem(Model $item): void
     {
         for ($i = 0; $i < sizeof($this->data['items']); $i++) {
             if ($this->data['items'][$i]['id'] == $item->id) {
