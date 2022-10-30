@@ -14,11 +14,14 @@ class Router
         $controllerName = 'App\Controllers';
         $path = explode('?', $_SERVER['REQUEST_URI'])[0];
 
-        if (strpos($path, '/admin/') === false) {
-            $controllerName = $controllerName. '\Front';
+        $path = $path === '/' ? '/homepage' : $path;
+
+        if (strpos($path, '/admin/') !== false) {
+            $path = str_replace('/admin', '/Admin', $path);
+        } else {
+            $path = '/Front' . $path;
         }
 
-        $path = $path === '/' ? '/homepage' : $path;
         $pathArr = explode('/', $path);
 
         for ($i = 1; $i < sizeof($pathArr); $i++) {
