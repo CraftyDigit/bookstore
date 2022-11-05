@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-include_once 'Autoloader.php';
+include_once 'vendor/autoload.php';
 
 class Kernel
 {
@@ -13,7 +13,6 @@ class Kernel
      */
     static function start(): void
     {
-        Autoloader::register();
         ErrorReporter::setHandlers();
         Router::followRoute();
     }

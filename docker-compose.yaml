@@ -9,3 +9,9 @@ services:
       - "./:/var/www/html/"
     ports:
       - "8080:80"
+  composer_installation:
+    container_name: composer_installation
+    image: composer
+    volumes:
+      - "./:/app"
+    command: composer install --prefer-source
