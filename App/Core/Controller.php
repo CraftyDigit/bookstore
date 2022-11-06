@@ -22,7 +22,7 @@ class Controller
     /**
      * @return string
      */
-    private function getDefaultTemplateName(): string
+    protected function getDefaultTemplateName(): string
     {
         $classFullName = get_class($this);
         $className = explode('\\',$classFullName)[sizeof(explode('\\',$classFullName)) - 1];
