@@ -3,11 +3,13 @@
 namespace App\Core;
 
 use App\Controllers\Front\Error404Controller;
+use Exception;
 
 class Router
 {
     /**
      * @return void
+     * @throws Exception
      */
     static function followRoute(): void
     {
@@ -16,7 +18,7 @@ class Router
 
         $path = $path === '/' ? '/homepage' : $path;
 
-        if (strpos($path, '/admin/') !== false) {
+        if (str_contains($path, '/admin/')) {
             $path = str_replace('/admin', '/Admin', $path);
         } else {
             $path = '/Front' . $path;
