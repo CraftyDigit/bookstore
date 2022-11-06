@@ -14,15 +14,11 @@ class DashboardController extends Controller
      */
     private RepositoryManager $repositoryManager;
 
-    /**
-     * @var bool
-     */
-    public bool $isAdminController = true;
-
     public function __construct()
     {
         parent::__construct();
 
+        $this->isAdminController = true;
         $this->repositoryManager = new RepositoryManager();
     }
 

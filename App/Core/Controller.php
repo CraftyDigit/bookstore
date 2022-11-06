@@ -10,12 +10,44 @@ abstract class Controller
     /**
      * @var string
      */
-    public string $templateName = '';
+    protected string $templateName = '';
+
+    /**
+     * @return string
+     */
+    public function getTemplateName(): string
+    {
+        return $this->templateName;
+    }
+
+    /**
+     * @param string $templateName
+     */
+    public function setTemplateName(string $templateName): void
+    {
+        $this->templateName = $templateName;
+    }
 
     /**
      * @var bool
      */
-    public bool $isAdminController = false;
+    protected bool $isAdminController = false;
+
+    /**
+     * @return bool
+     */
+    public function isAdminController(): bool
+    {
+        return $this->isAdminController;
+    }
+
+    /**
+     * @param bool $isAdminController
+     */
+    public function setIsAdminController(bool $isAdminController): void
+    {
+        $this->isAdminController = $isAdminController;
+    }
 
     public function __construct()
     {
@@ -25,7 +57,7 @@ abstract class Controller
     /**
      * @return string
      */
-    protected function getDefaultTemplateName(): string
+    public function getDefaultTemplateName(): string
     {
         $classFullName = get_class($this);
         $className = explode('\\',$classFullName)[sizeof(explode('\\',$classFullName)) - 1];
@@ -34,12 +66,15 @@ abstract class Controller
     }
 
     /**
-     * @return void
-     * @throws Exception
+     * @param string|null $templateName
+     * @return string
      */
-    public function render(): void
+    public function getTemplateFullName(string $templateName = null): string
     {
-        $this->output();
+        $templateName = $templateName ?: $this->templateName;
+        $templateInnerDirectory = $this->isAdminController ? 'Admin' : 'Front';
+
+        return dirname(__DIR__) . '/Templates/' . $templateInnerDirectory .'/'. $templateName . '.php';
     }
 
     /**
@@ -50,10 +85,7 @@ abstract class Controller
      */
     protected function output(string $templateName = null, array $variables = []): void
     {
-        $config = Config::getInstance();
-        $templateName = $templateName ?: $this->templateName;
-        $templateInnerDirectory = $this->isAdminController ? 'Admin' : 'Front';
-        $templateFullName = dirname(__DIR__) . '/Templates/' . $templateInnerDirectory .'/'. $templateName . '.php';
+        $templateFullName = $this->getTemplateFullName($templateName);
         $output = '';
 
         if(file_exists($templateFullName)){
@@ -71,4 +103,12 @@ abstract class Controller
         print $output;
     }
 
+    /**
+     * @return void
+     * @throws Exception
+     */
+    public function render(): void
+    {
+        $this->output();
+    }
 }
