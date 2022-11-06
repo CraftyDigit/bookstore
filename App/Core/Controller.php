@@ -2,7 +2,10 @@
 
 namespace App\Core;
 
-class Controller
+use App\Core\Exceptions\FileNotFoundException;
+use Exception;
+
+abstract class Controller
 {
     /**
      * @var string
@@ -32,6 +35,7 @@ class Controller
 
     /**
      * @return void
+     * @throws Exception
      */
     public function render(): void
     {
@@ -42,6 +46,7 @@ class Controller
      * @param string|null $templateName
      * @param array $variables
      * @return void
+     * @throws Exception
      */
     protected function output(string $templateName = null, array $variables = []): void
     {
@@ -49,7 +54,7 @@ class Controller
         $templateName = $templateName ?: $this->templateName;
         $templateInnerDirectory = $this->isAdminController ? 'Admin' : 'Front';
         $templateFullName = dirname(__DIR__) . '/Templates/' . $templateInnerDirectory .'/'. $templateName . '.php';
-        $output = NULL;
+        $output = '';
 
         if(file_exists($templateFullName)){
             extract($variables);
@@ -59,6 +64,8 @@ class Controller
             include $templateFullName;
 
             $output = ob_get_clean();
+        } else {
+            throw new FileNotFoundException("Template file '$templateFullName' is not exist!");
         }
 
         print $output;

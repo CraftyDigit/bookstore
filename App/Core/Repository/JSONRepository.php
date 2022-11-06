@@ -2,8 +2,8 @@
 
 namespace App\Core\Repository;
 
+use App\Core\Exceptions\FileNotFoundException;
 use App\Core\Model;
-use Exception;
 
 class JSONRepository implements RepositoryInterface
 {
@@ -28,7 +28,7 @@ class JSONRepository implements RepositoryInterface
 
     /**
      * @param string $dataFileName
-     * @throws Exception
+     * @throws FileNotFoundException
      */
     public function __construct(string $dataFileName)
     {
@@ -157,7 +157,7 @@ class JSONRepository implements RepositoryInterface
 
     /**
      * @return void
-     * @throws Exception
+     * @throws FileNotFoundException
      */
     private function loadData(): void
     {
@@ -166,7 +166,7 @@ class JSONRepository implements RepositoryInterface
         if (file_exists($file)) {
             $this->data = json_decode(file_get_contents($file), 1);
         } else {
-            throw new Exception('JSON data file does not exist.');
+            throw new FileNotFoundException("JSON data file '$file' does not exist.");
         }
     }
 
