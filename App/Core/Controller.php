@@ -4,6 +4,7 @@ namespace App\Core;
 
 use App\Core\Exceptions\FileNotFoundException;
 use Exception;
+use JetBrains\PhpStorm\Pure;
 
 abstract class Controller
 {
@@ -74,7 +75,18 @@ abstract class Controller
         $templateName = $templateName ?: $this->templateName;
         $templateInnerDirectory = $this->isAdminController ? 'Admin' : 'Front';
 
-        return dirname(__DIR__) . '/Templates/' . $templateInnerDirectory .'/'. $templateName . '.php';
+        return '/Templates/' . $templateInnerDirectory .'/'. $templateName;
+    }
+
+    /**
+     * @param string|null $templateName
+     * @return string
+     */
+    public function getTemplatePath(string $templateName = null): string
+    {
+        $templateFullName = $this->getTemplateFullName($templateName);
+
+        return dirname(__DIR__) . $templateFullName . '.php';
     }
 
     /**
@@ -85,7 +97,7 @@ abstract class Controller
      */
     protected function output(string $templateName = null, array $variables = []): void
     {
-        $templateFullName = $this->getTemplateFullName($templateName);
+        $templateFullName = $this->getTemplatePath($templateName);
         $output = '';
 
         if(file_exists($templateFullName)){
