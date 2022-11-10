@@ -2,15 +2,18 @@
 
 namespace App\Controllers\Front;
 
-use App\Core\Controller;
+use App\Core\Controller\AbstractController;
+use Exception;
 
-class Error404Controller extends Controller
+final class Error404Controller extends AbstractController
 {
     /**
      * @return void
+     * @throws Exception
      */
     public function render(): void
     {
-        $this->output('404');
+        $this->template = $this->templateManager->getTemplate('404');
+        $this->output();
     }
 }

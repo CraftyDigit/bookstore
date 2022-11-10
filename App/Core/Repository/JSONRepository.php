@@ -2,37 +2,23 @@
 
 namespace App\Core\Repository;
 
-use App\Core\Model;
-use Exception;
+use App\Core\Exceptions\FileNotFoundException;
+use App\Core\Model\Model;
 
 class JSONRepository implements RepositoryInterface
 {
     /**
-     * Name of JSON file containing data
-     *
-     * @var string
+     * @param string $dataFileName Name of JSON file containing data
+     * @param array $data Array of items loaded from JSON file
+     * @param bool $autoSave
+     * @throws FileNotFoundException
      */
-    private string $dataFileName = '';
-
-    /**
-     * Array of items loaded from JSON file
-     *
-     * @var array
-     */
-    private array $data = [];
-
-    /**
-     * @var bool
-     */
-    public bool $autoSave = true;
-
-    /**
-     * @param string $dataFileName
-     * @throws Exception
-     */
-    public function __construct(string $dataFileName)
+    public function __construct(
+        private string $dataFileName = '',
+        private array $data = [],
+        public bool $autoSave = true
+    )
     {
-        $this->dataFileName = $dataFileName;
         $this->loadData();
     }
 
@@ -59,14 +45,14 @@ class JSONRepository implements RepositoryInterface
         foreach ($this->data['items'] as $dataItem) {
             if ($dataItem['id'] == $itemId) {
                 return new Model($dataItem);
-            };
+            }
         }
 
         return null;
     }
 
     /**
-     * @return int[]|string[]
+     * @return array
      */
     public function getScheme(): array
     {
@@ -79,6 +65,8 @@ class JSONRepository implements RepositoryInterface
     public function getBlankItem(): Model
     {
         $scheme = $this->getScheme();
+
+        $dataItem = [];
 
         foreach ($scheme as $field) {
             $dataItem[$field] = '';
@@ -157,7 +145,7 @@ class JSONRepository implements RepositoryInterface
 
     /**
      * @return void
-     * @throws Exception
+     * @throws FileNotFoundException
      */
     private function loadData(): void
     {
@@ -166,7 +154,7 @@ class JSONRepository implements RepositoryInterface
         if (file_exists($file)) {
             $this->data = json_decode(file_get_contents($file), 1);
         } else {
-            throw new Exception('JSON data file does not exist.');
+            throw new FileNotFoundException("JSON data file '$file' does not exist.");
         }
     }
 

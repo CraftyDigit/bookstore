@@ -2,17 +2,19 @@
 
 namespace App\Controllers\Front;
 
-use App\Core\Controller;
+use App\Core\Controller\AbstractController;
+use Exception;
 
-class HomepageController extends Controller
+final class HomepageController extends AbstractController
 {
     /**
      * @return void
+     * @throws Exception
      */
     public function render(): void
     {
         $templateData['pageTitle'] = 'Homepage';
 
-        $this->output('homepage', $templateData);
+        $this->output($templateData);
     }
 }

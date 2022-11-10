@@ -2,7 +2,7 @@
 
 namespace App\Core\Repository;
 
-use App\Core\Model;
+use App\Core\Model\Model;
 
 interface RepositoryInterface
 {
@@ -18,7 +18,7 @@ interface RepositoryInterface
     public function getOneById(int $itemId): ?Model;
 
     /**
-     * @return int[]|string[]
+     * @return array
      */
     public function getScheme(): array;
 

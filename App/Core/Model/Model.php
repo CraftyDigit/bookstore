@@ -1,37 +1,30 @@
 <?php
 
-namespace App\Core;
+namespace App\Core\Model;
 
-class Model
+class Model implements ModelInterface
 {
-    /**
-     * @var array
-     */
-    private array $data;
-
     /**
      * @param array $data
      */
-    public function __construct(array $data)
-    {
-        $this->data = $data;
-    }
+    public function __construct(private array $data)
+    {}
 
     /**
-     * @param $name
+     * @param string $name
      * @return mixed
      */
-    public function __get($name)
+    public function __get(string $name): mixed
     {
         return $this->data[$name];
     }
 
     /**
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param mixed $value
      * @return void
      */
-    public function __set($name, $value): void
+    public function __set(string $name, mixed $value): void
     {
         $this->data[$name] = $value;
     }

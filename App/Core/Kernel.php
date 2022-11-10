@@ -2,19 +2,35 @@
 
 namespace App\Core;
 
-include_once 'Autoloader.php';
+use App\Core\ErrorReporter\ErrorReporter;
+use App\Core\ErrorReporter\ErrorReporterInterface;
+use App\Core\Router\Router;
+use App\Core\Router\RouterInterface;
+use Exception;
+
+include_once 'vendor/autoload.php';
 
 class Kernel
 {
     /**
-     *This method will start the app
+     * @param RouterInterface $router
+     * @param ErrorReporterInterface $errorReporter
+     */
+    public function __construct(
+        public ErrorReporterInterface $errorReporter = new ErrorReporter(),
+        public RouterInterface $router = new Router()
+    )
+    {}
+
+    /**
+     * This method will start the app
      *
      * @return void
+     * @throws Exception
      */
-    static function start(): void
+    function start(): void
     {
-        Autoloader::register();
-        ErrorReporter::setHandlers();
-        Router::followRoute();
+        $this->errorReporter->setHandlers();
+        $this->router->followRoute();
     }
 }

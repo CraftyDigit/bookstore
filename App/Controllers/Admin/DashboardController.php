@@ -2,28 +2,24 @@
 
 namespace App\Controllers\Admin;
 
-use App\Core\Controller;
-use App\Core\Model;
+use App\Core\Controller\AbstractController;
+use App\Core\Model\Model;
 use App\Core\Repository\RepositoryManager;
+use App\Core\Repository\RepositoryManagerInterface;
 use Exception;
 
-class DashboardController extends Controller
+final class DashboardController extends AbstractController
 {
     /**
-     * @var RepositoryManager
+     * @param RepositoryManagerInterface $repositoryManager
+     * @param bool $isAdminController
      */
-    private RepositoryManager $repositoryManager;
-
-    /**
-     * @var bool
-     */
-    public bool $isAdminController = true;
-
-    public function __construct()
+    public function __construct(
+        public bool $isAdminController = true,
+        private RepositoryManagerInterface $repositoryManager = new RepositoryManager()
+    )
     {
-        parent::__construct();
-
-        $this->repositoryManager = new RepositoryManager();
+        parent::__construct($isAdminController);
     }
 
     /**
@@ -126,7 +122,7 @@ class DashboardController extends Controller
 
         $templateData['pageTitle'] = 'Dashboard';
 
-        $this->output('dashboard', $templateData);
+        $this->output($templateData);
     }
 
     /**
@@ -142,7 +138,8 @@ class DashboardController extends Controller
         $templateData['categoriesList'] = $this->getCategoriesList();
         $templateData['pageTitle'] = 'Product #' . $templateData['product']->id;
 
-        $this->output('product', $templateData);
+        $this->template = $this->templateManager->getTemplate('product', true);
+        $this->output($templateData);
     }
 
     /**
@@ -157,7 +154,8 @@ class DashboardController extends Controller
         $templateData['categoriesList'] = $this->getCategoriesList();
         $templateData['pageTitle'] = 'New product';
 
-        $this->output('product', $templateData);
+        $this->template = $this->templateManager->getTemplate('product', true);
+        $this->output($templateData);
     }
 
     /**
