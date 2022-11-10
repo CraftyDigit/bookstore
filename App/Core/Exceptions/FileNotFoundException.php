@@ -3,9 +3,16 @@
 namespace App\Core\Exceptions;
 
 use Exception;
+use Throwable;
 
 class FileNotFoundException extends Exception
 {
+    /**
+     * @param $message
+     * @param $code
+     * @param Throwable|null $previous
+     * @param string|null $path
+     */
     public function __construct($message = "", $code = 0, Throwable $previous = null, string $path = null)
     {
         if (null === $message) {

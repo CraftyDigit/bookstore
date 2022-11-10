@@ -1,25 +1,37 @@
 <?php
 
-namespace App\Core;
+namespace App\Core\ErrorReporter;
 
-use App\Controllers\Front\Error500Controller;
+use App\Core\Config;
+use App\Core\Controller\ControllerManager;
+use App\Core\Controller\ControllerManagerInterface;
 use ErrorException;
 
-class ErrorReporter
+class ErrorReporter implements ErrorReporterInterface
 {
+    /**
+     * @var Config
+     */
+    public Config $config;
+
+    /**
+     * @param ControllerManagerInterface $controllerManager
+     */
+    public function __construct(public ControllerManagerInterface $controllerManager = new ControllerManager())
+    {
+        $this->config = Config::getInstance();
+    }
+
     /**
      * This method enables correct error handling and reporting
      *
      * @return void
      */
-    public static function setHandlers(): void
+    public function setHandlers(): void
     {
         error_reporting(E_ALL);
 
-        $config = Config::getInstance();
-        $mode = $config->mode;
-
-        if ($mode === 'prod') {
+        if ($this->config->mode === 'prod') {
             ini_set('display_errors', false);
             ini_set('log_errors', true);
         } else {
@@ -27,16 +39,16 @@ class ErrorReporter
             ini_set('log_errors', false);
         }
 
-        set_exception_handler('App\Core\ErrorReporter::exceptionHandler');
-        set_error_handler('App\Core\ErrorReporter::errorHandler');
-        register_shutdown_function('App\Core\ErrorReporter::criticalErrorHandler');
+        set_exception_handler([$this, 'exceptionHandler']);
+        set_error_handler([$this, 'errorHandler']);
+        register_shutdown_function([$this, 'criticalErrorHandler']);
     }
 
     /**
      * @param $e
      * @return void
      */
-    public static function exceptionHandler($e): void
+    public function exceptionHandler($e): void
     {
         error_log($e);
         http_response_code(500);
@@ -44,7 +56,7 @@ class ErrorReporter
         if (filter_var(ini_get('display_errors'), FILTER_VALIDATE_BOOLEAN)) {
             echo $e;
         } else {
-            $controller = new Error500Controller();
+            $controller = $this->controllerManager->getController('Error500');
             $controller->render();
         }
 
@@ -58,23 +70,23 @@ class ErrorReporter
      * @param int $line
      * @return void
      */
-    public static function errorHandler($level, $message, string $file = '', int $line = 0): void
+    public function errorHandler($level, $message, string $file = '', int $line = 0): void
     {
         $e = new ErrorException($message, 0, $level, $file, $line);
-        self::exceptionHandler($e);
+        $this->exceptionHandler($e);
     }
 
     /**
      * @return void
      */
-    public static function criticalErrorHandler(): void
+    public function criticalErrorHandler(): void
     {
         $error = error_get_last();
         if ($error !== null) {
             $e = new ErrorException(
                 $error['message'], 0, $error['type'], $error['file'], $error['line']
             );
-            self::exceptionHandler($e);
+            $this->exceptionHandler($e);
         }
     }
 }

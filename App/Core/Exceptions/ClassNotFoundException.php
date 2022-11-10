@@ -3,9 +3,16 @@
 namespace App\Core\Exceptions;
 
 use Exception;
+use Throwable;
 
 class ClassNotFoundException extends Exception
 {
+    /**
+     * @param $message
+     * @param $code
+     * @param Throwable|null $previous
+     * @param string|null $className
+     */
     public function __construct($message = "", $code = 0, Throwable $previous = null, string $className = null)
     {
         if (null === $message) {

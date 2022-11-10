@@ -5,18 +5,16 @@ namespace App\Core\Repository;
 use App\Core\Config;
 use App\Core\Exceptions\ClassNotFoundException;
 
-class RepositoryManager
+class RepositoryManager implements RepositoryManagerInterface
 {
     /**
-     * @var string
+     * @param string $dataSourceType
      */
-    protected string $dataSourceType = '';
-
-    public function __construct(string $dataSourceType = null)
+    public function __construct(protected string $dataSourceType = '')
     {
         $config = Config::getInstance();
 
-        $this->dataSourceType = $dataSourceType ?? $config->data_source_type;
+        $this->dataSourceType = $dataSourceType ?: $config->data_source_type;
     }
 
     /**

@@ -3,36 +3,22 @@
 namespace App\Core\Repository;
 
 use App\Core\Exceptions\FileNotFoundException;
-use App\Core\Model;
+use App\Core\Model\Model;
 
 class JSONRepository implements RepositoryInterface
 {
     /**
-     * Name of JSON file containing data
-     *
-     * @var string
-     */
-    private string $dataFileName = '';
-
-    /**
-     * Array of items loaded from JSON file
-     *
-     * @var array
-     */
-    private array $data = [];
-
-    /**
-     * @var bool
-     */
-    public bool $autoSave = true;
-
-    /**
-     * @param string $dataFileName
+     * @param string $dataFileName Name of JSON file containing data
+     * @param array $data Array of items loaded from JSON file
+     * @param bool $autoSave
      * @throws FileNotFoundException
      */
-    public function __construct(string $dataFileName)
+    public function __construct(
+        private string $dataFileName = '',
+        private array $data = [],
+        public bool $autoSave = true
+    )
     {
-        $this->dataFileName = $dataFileName;
         $this->loadData();
     }
 
@@ -66,7 +52,7 @@ class JSONRepository implements RepositoryInterface
     }
 
     /**
-     * @return int[]|string[]
+     * @return array
      */
     public function getScheme(): array
     {

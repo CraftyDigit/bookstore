@@ -2,22 +2,19 @@
 
 namespace App\Controllers\Front;
 
-use App\Core\Controller;
+use App\Core\Controller\AbstractController;
 use App\Core\Repository\RepositoryManager;
+use App\Core\Repository\RepositoryManagerInterface;
 use Exception;
 
-class CatalogController extends Controller
+final class CatalogController extends AbstractController
 {
     /**
-     * @var RepositoryManager
+     * @param RepositoryManagerInterface $repositoryManager
      */
-    private RepositoryManager $repositoryManager;
-
-    public function __construct()
+    public function __construct(private RepositoryManagerInterface $repositoryManager = new RepositoryManager())
     {
         parent::__construct();
-
-        $this->repositoryManager = new RepositoryManager();
     }
 
     /**
@@ -34,6 +31,6 @@ class CatalogController extends Controller
 
         $templateData['pageTitle'] = 'Catalog';
 
-        $this->output('catalog', $templateData);
+        $this->output($templateData);
     }
 }
