@@ -45,7 +45,7 @@ class JSONRepository implements RepositoryInterface
         foreach ($this->data['items'] as $dataItem) {
             if ($dataItem['id'] == $itemId) {
                 return new Model($dataItem);
-            };
+            }
         }
 
         return null;
@@ -65,6 +65,8 @@ class JSONRepository implements RepositoryInterface
     public function getBlankItem(): Model
     {
         $scheme = $this->getScheme();
+
+        $dataItem = [];
 
         foreach ($scheme as $field) {
             $dataItem[$field] = '';
