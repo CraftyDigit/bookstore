@@ -5,17 +5,10 @@ namespace App\Core\Model;
 class Model implements ModelInterface
 {
     /**
-     * @var array
-     */
-    private array $data;
-
-    /**
      * @param array $data
      */
-    public function __construct(array $data)
-    {
-        $this->data = $data;
-    }
+    public function __construct(private array $data)
+    {}
 
     /**
      * @param string $name
