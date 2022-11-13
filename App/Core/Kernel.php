@@ -8,9 +8,6 @@ use App\Core\Router\Router;
 use App\Core\Router\RouterInterface;
 use Exception;
 
-include_once 'vendor/autoload.php';
-
-class Kernel
 {
     /**
      * @param RouterInterface $router
