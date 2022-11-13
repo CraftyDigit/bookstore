@@ -8,6 +8,7 @@ use App\Core\Router\Router;
 use App\Core\Router\RouterInterface;
 use Exception;
 
+final class Kernel
 {
     /**
      * @param RouterInterface $router
