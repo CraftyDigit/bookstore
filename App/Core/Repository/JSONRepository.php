@@ -147,7 +147,7 @@ class JSONRepository implements RepositoryInterface
      * @return void
      * @throws FileNotFoundException
      */
-    private function loadData(): void
+    public function loadData(): void
     {
         $file = $this->getDataFileFullName();
 
