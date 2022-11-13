@@ -4,7 +4,7 @@ namespace App;
 
 use App\Core\Kernel;
 
-require_once __DIR__ . '/App/Core/Kernel.php';
+include_once 'vendor/autoload.php';
 
 $kernel = new Kernel();
 $kernel->start();
