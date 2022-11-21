@@ -1,78 +1,46 @@
 # Simple bookstore
 
-Тестовый проект. Исходные данные:
+Simple site backbone made on PHP. 
 
-Цель: Разработать админку-сайт для каталога продуктов (любых).
+Features:
+* High extendability. 
+* Front-end and administration panel. 
+* JSON files as data sources.
+* Prod and dev versions.
+* Deployment with or without docker.
+* Core classes covered with tests.
 
-Описание:
-В системе есть две сущности: продукт и категория.
-Продукт включает имя, картинку, описание, цену, а также категорию, в которую входит.
-Категория состоит только из имени.
-Список категорий предопределен, забит в коде и состоит из 3-5 вариантов.
-Хранить продукты в файле в json формате, базу данных подключать не надо.
+## Entry points:
 
-В админке должна быть возможность:
-добавить продукт
-посмотреть список продуктов
-посмотреть конкретный продукт
+* **'/'** - Homepage
+* **'/catalog'** - Catalog page. 
+    - Products displayed by categories.
+* **'/admin/dashboard'** - Admin panel dashboard. 
+    - "Add product" button.
+    - Products table. Product names - links to product edit page. 
+* **'/admin/dashboard?productId=0'** - Product edit page.
+* If no controller for the entry point is found - the 404 error page will be displayed.
 
-Загрузку картинок не делать, в форме добавления продукта указывать как ссылку на сторонний сайт. Авторизация не нужна.
+## Installation with Docker:
 
-Требования:
-Проект сделать на чистом PHP без использования фреймворков и библиотек.
-Код выложить на гитхаб, сделать в отдельной ветке с пул реквестом, который можно поревьюить.
-Использовать докер, если есть опыт.
-Предусмотреть масштабирование системы.
+#### Requirements:
+- Docker
 
-***Для работы нужен apache с mod_rewrite (.htaccess в корневой папке).***
+#### Installation process:
+1. Copy code from the project repository.
+2. In the project root folder execute commands:
+    - (dev version) ``` docker-compose up --d ```
+    - (prod version) ``` docker-compose -f docker-compose_prod.yaml up --d ```
 
-## Точки входа:
+## Installation with Composer (without Docker):
 
-* '/' - Главная страница. Есть ссылка на каталог на фронте
-* '/catalog' - Каталог на фронте. Вывод продуктов по категориям.
-* '/admin/dashboard' - Админка. Дашборд. Список продуктов и кнопка добавления продукта. В таблице имя продукта - ссылка на страницу деталей продукта.
-* '/admin/dashboard?productId=0' - Админка. Страница деталей продукта. Форма редактирования даннных продукта. Кнопки сохранения изменений и удаления продукта. Есть ссылка на дашборд.
-* Если контроллер для точки входа не найден - проваливаемся в 404
+#### Requirements:
+- Apache 2.4 (with mod_rewrite)
+- PHP 8.1
+- Сomposer 2.4.4
 
-## Структура:
-
-* index.php - скрипт принимает все входящие подключения и стартует приложение.
-* .htaccess - директивы для Apache. Перенаправление всех входящих подключений на index.php.
-* Dockerfile - файл настроек Docker.
-* docker-compose.yaml - файл настроек docker-compose.
-
-##### Директория "App":
-
-* config.json - Файл конфигурации.
-
-##### Директория "App/Core":
-
-* Autoloader.php - Класс. Метод "register" регистрирует psr-4 автозагрузчик классов.
-* Config.php - Синглтон класс для доступа к данным файла конфигурации.
-* Controller.php - Класс для работы с контроллерами.
-* ErrorReporter.php - Класс для обработки вывода ошибок и исключений.
-* Kernel.php - Главный класс. Управляет работой приложения.
-* Model.php - Класс модели данных .
-* Router.php - Класс для роутинга.
-
-##### Директория "App/Core/Repository":
-
-* RepositoryInterface - Интерфейс репозитория.
-* RepositoryManager - Класс для работы с репозиторями. 
-* JSONRepository - Класс репозитория для работы с данными в JSON формате.
-
-##### Директория "App/Controllers":
-
-* Контроллеры фронта и админки.
-
-##### Директория "App/Templates":
-
-* Шаблоны фронта так и админки.
-
-##### Директория "App/Data":
-
-* Файлы данных.
-
-##### Директория "App/Assets":
-
-* Стили и JS скрипты для фронта и админки.
+#### Installation process:
+1. Copy code from the project repository.
+2. In the project root folder execute commands:
+    - (dev version) ``` composer install --prefer-source ```
+    - (prod version) ``` composer install --no-dev --prefer-source ```
