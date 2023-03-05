@@ -1,14 +1,6 @@
-# Simple bookstore
+# 'Simple bookstore' - demo site for 'CraftyDigit/Puff' framework 
 
-Simple site backbone made on PHP. 
-
-Features:
-* High extendability. 
-* Front-end and administration panel. 
-* JSON files as data sources.
-* Prod and dev versions.
-* Deployment with or without docker.
-* Core classes covered with tests.
+Demo site made as a showcase for 'CraftyDigit/Puff' framework.
 
 ## Entry points:
 
@@ -28,19 +20,17 @@ Features:
 
 #### Installation process:
 1. Copy code from the project repository.
-2. In the project root folder execute commands:
-    - (dev version) ``` docker-compose up --d ```
-    - (prod version) ``` docker-compose -f docker-compose_prod.yaml up --d ```
-
+2. Open the terminal and in the project root folder execute a command:
+    - ``` docker-compose up --d ```
+    
 ## Installation with Composer (without Docker):
 
 #### Requirements:
 - Apache 2.4 (with mod_rewrite)
-- PHP 8.1
-- Сomposer 2.4.4
+- PHP 8.2
+- Composer 2.4.4
 
 #### Installation process:
 1. Copy code from the project repository.
-2. In the project root folder execute commands:
-    - (dev version) ``` composer install --prefer-source ```
-    - (prod version) ``` composer install --no-dev --prefer-source ```
+2. Open the terminal and in the project root folder execute a command:
+    - ``` composer install --prefer-source ```
