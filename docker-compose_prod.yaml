@@ -9,7 +9,7 @@ services:
       - "./:/var/www/html/"
       - "/var/www/html/Tests"
     ports:
-      - "8000:80"
+      - "8282:80"
   composer-installation_prod:
     container_name: composer-installation_prod
     image: composer:2.4.4

@@ -8,7 +8,7 @@ services:
     volumes:
       - "./:/var/www/html/"
     ports:
-      - "8080:80"
+      - "8281:80"
 
   composer-installation:
     container_name: composer_installation
