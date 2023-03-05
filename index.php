@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Core\Kernel;
+use CraftyDigit\Puff\Kernel;
 
 include_once 'vendor/autoload.php';
 
