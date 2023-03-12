@@ -18,7 +18,7 @@
 
         <div class="catalog">
             <div class="catalog-actions">
-                <div class="catalog-action-add"><a href="dashboard?productId=new">Add product</a></div>
+                <div class="catalog-action-add"><a href="/admin/dashboard/products/add">Add product</a></div>
             </div>
             <table>
                 <thead>
@@ -33,7 +33,7 @@
                     <?php foreach ($products as $product) { ?>
                     <tr>
                         <td class="catalog-product-id"><?php echo $product->id; ?></td>
-                        <td class="catalog-product-name"><a href="?productId=<?php echo $product->id; ?>"><?php echo $product->name; ?></a></td>
+                        <td class="catalog-product-name"><a href="/admin/dashboard/products/info?id=<?php echo $product->id; ?>"><?php echo $product->name; ?></a></td>
                         <td class="catalog-product-img"><img src="<?php echo $product->image; ?>"></td>
                         <td class="catalog-product-description"><?php echo $product->description; ?></td>
                         <td class="catalog-product-price">$<?php echo $product->price; ?></td>

@@ -1,7 +1,7 @@
 {
     "require": {
         "php": ">=8.2.0",
-        "craftydigit/puff": "0.1.*"
+        "craftydigit/puff": "0.2.*"
     },
     "autoload": {
         "psr-4": {

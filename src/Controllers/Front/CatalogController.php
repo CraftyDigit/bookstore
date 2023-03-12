@@ -2,17 +2,23 @@
 
 namespace App\Controllers\Front;
 
+use CraftyDigit\Puff\Attributes\Controller;
+use CraftyDigit\Puff\Attributes\Route;
 use CraftyDigit\Puff\Controller\AbstractController;
 use CraftyDigit\Puff\Repository\RepositoryManager;
 use CraftyDigit\Puff\Repository\RepositoryManagerInterface;
 use Exception;
 
+#[Controller('catalog')]
 final class CatalogController extends AbstractController
 {
     /**
      * @param RepositoryManagerInterface $repositoryManager
+     * @throws Exception
      */
-    public function __construct(private RepositoryManagerInterface $repositoryManager = new RepositoryManager())
+    public function __construct(
+        private readonly RepositoryManagerInterface $repositoryManager = new RepositoryManager()
+    )
     {
         parent::__construct();
     }
@@ -21,7 +27,8 @@ final class CatalogController extends AbstractController
      * @return void
      * @throws Exception
      */
-    public function render(): void
+    #[Route('/catalog', 'catalog')]
+    public function catalog(): void
     {
         $categoriesRepo = $this->repositoryManager->getRepository('categories');
         $templateData['categories'] = $categoriesRepo->getAll();
