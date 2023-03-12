@@ -92,7 +92,15 @@ body {
     height: 180px;
 }
 
-.product-field input, .product-field textarea {
+.product-field input, 
+.product-field textarea, 
+.product-field select {
     width: 100%;
     font-size: 1.15em;
+}
+
+.product-field input[type='text'], 
+.product-field input[type='number'], 
+.product-field textarea {
+    width: calc(100% - 10px);
 }
