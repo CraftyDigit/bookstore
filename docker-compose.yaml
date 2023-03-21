@@ -14,4 +14,4 @@ services:
     image: composer:2.4.4
     volumes:
       - "./:/app"
-    command: composer install --prefer-source
+    command: composer install

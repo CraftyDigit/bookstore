@@ -4,8 +4,8 @@ namespace App\Controllers\Front;
 
 use CraftyDigit\Puff\Attributes\Controller;
 use CraftyDigit\Puff\Attributes\Route;
+use CraftyDigit\Puff\Container\ContainerExtendedInterface;
 use CraftyDigit\Puff\Controller\AbstractController;
-use CraftyDigit\Puff\Repository\RepositoryManager;
 use CraftyDigit\Puff\Repository\RepositoryManagerInterface;
 use Exception;
 
@@ -13,14 +13,15 @@ use Exception;
 final class CatalogController extends AbstractController
 {
     /**
+     * @param ContainerExtendedInterface $container
      * @param RepositoryManagerInterface $repositoryManager
-     * @throws Exception
      */
     public function __construct(
-        private readonly RepositoryManagerInterface $repositoryManager = new RepositoryManager()
+        protected ContainerExtendedInterface $container,
+        private readonly RepositoryManagerInterface $repositoryManager
     )
     {
-        parent::__construct();
+        $this->container->callMethod(parent::class, '__construct', target:  $this);
     }
 
     /**

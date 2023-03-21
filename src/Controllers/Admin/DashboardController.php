@@ -4,31 +4,30 @@ namespace App\Controllers\Admin;
 
 use CraftyDigit\Puff\Attributes\Controller;
 use CraftyDigit\Puff\Attributes\Route;
+use CraftyDigit\Puff\Container\ContainerExtendedInterface;
 use CraftyDigit\Puff\Controller\AbstractController;
-use CraftyDigit\Puff\Exceptions\ClassNotFoundException;
 use CraftyDigit\Puff\Exceptions\RouteNotFoundException;
 use CraftyDigit\Puff\Model\Model;
-use CraftyDigit\Puff\Repository\RepositoryManager;
 use CraftyDigit\Puff\Repository\RepositoryManagerInterface;
 use CraftyDigit\Puff\Router\Router;
+use CraftyDigit\Puff\Template\TemplateInterface;
 use Exception;
 
 #[Controller('dashboard')]
 final class DashboardController extends AbstractController
 {
     /**
-     * @param Router|null $router
+     * @param ContainerExtendedInterface $container
+     * @param Router $router
      * @param RepositoryManagerInterface $repositoryManager
-     * @throws Exception
      */
     public function __construct(
-        private ?Router $router = null,
-        private readonly RepositoryManagerInterface $repositoryManager = new RepositoryManager()
+        protected ContainerExtendedInterface $container,
+        private readonly Router $router,
+        private readonly RepositoryManagerInterface $repositoryManager
     )
     {
-        parent::__construct();
-        
-        $this->router = Router::getInstance();
+        $this->container->callMethod(parent::class, '__construct', target: $this);
     }
 
     /**
@@ -43,7 +42,7 @@ final class DashboardController extends AbstractController
 
     /**
      * @return void
-     * @throws Exception
+     * @throws RouteNotFoundException
      */
     #[Route('/admin/dashboard/products/edit', 'product_edit', 'POST')]
     public function productEdit(): void
@@ -82,7 +81,7 @@ final class DashboardController extends AbstractController
 
     /**
      * @return void
-     * @throws Exception
+     * @throws RouteNotFoundException
      */
     #[Route('/admin/dashboard/products/delete', 'product_delete', 'POST')]
     public function productDelete(): void
@@ -123,8 +122,7 @@ final class DashboardController extends AbstractController
 
     /**
      * @return void
-     * @throws ClassNotFoundException
-     * @throws Exception
+     * @throws RouteNotFoundException
      */
     #[Route('/admin/dashboard/products/info', 'product_info')]
     public function productInfo(): void
@@ -147,7 +145,7 @@ final class DashboardController extends AbstractController
         $templateData['categories'] = $categoriesRepo->getAll();
         $templateData['pageTitle'] = 'Product #' . $templateData['product']->id;
 
-        $template = $this->templateManager->getTemplate('Admin/product');
+        $template = $this->container->get(TemplateInterface::class, ['name' => 'Admin/product']);
         
         $this->render($template, $templateData);
     }
@@ -166,7 +164,7 @@ final class DashboardController extends AbstractController
         $templateData['categories'] = $categoriesRepo->getAll();
         $templateData['pageTitle'] = 'New product';
 
-        $template = $this->templateManager->getTemplate('Admin/product');
+        $template = $this->container->get(TemplateInterface::class, ['name' => 'Admin/product']);
         
         $this->render($template, $templateData);
     }
