@@ -6,48 +6,38 @@ use CraftyDigit\Puff\Attributes\Controller;
 use CraftyDigit\Puff\Attributes\Route;
 use CraftyDigit\Puff\Container\ContainerExtendedInterface;
 use CraftyDigit\Puff\Controller\AbstractController;
+use CraftyDigit\Puff\DataHandler\DataHandlerManagerInterface;
+use CraftyDigit\Puff\Enums\DataHandler;
 use CraftyDigit\Puff\Exceptions\RouteNotFoundException;
-use CraftyDigit\Puff\Model\Model;
-use CraftyDigit\Puff\Repository\RepositoryManagerInterface;
 use CraftyDigit\Puff\Router\Router;
+use CraftyDigit\Puff\SimpleModel\SimpleModel;
 use CraftyDigit\Puff\Template\TemplateInterface;
-use Exception;
 
 #[Controller('dashboard')]
 final class DashboardController extends AbstractController
 {
-    /**
-     * @param ContainerExtendedInterface $container
-     * @param Router $router
-     * @param RepositoryManagerInterface $repositoryManager
-     */
     public function __construct(
         protected ContainerExtendedInterface $container,
         private readonly Router $router,
-        private readonly RepositoryManagerInterface $repositoryManager
+        private readonly DataHandlerManagerInterface $dataHandlerManager,
+        private ?object $jsonEntityManager = null,
     )
     {
         $this->container->callMethod(parent::class, '__construct', target: $this);
+        
+        $this->jsonEntityManager = $this->dataHandlerManager->getEntityManager(DataHandler::JSON);
     }
 
-    /**
-     * @return void
-     * @throws Exception
-     */
     #[Route('/admin/dashboard', 'dashboard')]
     public function dashboard(): void
     {
         $this->router->followRouteByName('products_list');
     }
 
-    /**
-     * @return void
-     * @throws RouteNotFoundException
-     */
     #[Route('/admin/dashboard/products/edit', 'product_edit', 'POST')]
     public function productEdit(): void
     {
-        $productsRepo =  $this->repositoryManager->getRepository('products');
+        $productsRepo =  $this->jsonEntityManager->getRepository('products');
 
         $product = $productsRepo->getOneById($_POST['product']['id']);
 
@@ -64,29 +54,21 @@ final class DashboardController extends AbstractController
         $this->router->redirectToRouteByName('product_info', ['id' => $product->id]);
     }
 
-    /**
-     * @return void
-     * @throws Exception
-     */
     #[Route('/admin/dashboard/products/add', 'product_add', 'POST')]
     public function productAdd(): void
     {
-        $productsRepo =  $this->repositoryManager->getRepository('products');
+        $productsRepo =  $this->jsonEntityManager->getRepository('products');
 
-        $product = new Model($_POST['product']);
+        $product = new SimpleModel($_POST['product']);
         $product = $productsRepo->addItem($product);
 
         $this->router->redirectToRouteByName('product_info', ['id' => $product->id]);
     }
 
-    /**
-     * @return void
-     * @throws RouteNotFoundException
-     */
     #[Route('/admin/dashboard/products/delete', 'product_delete', 'POST')]
     public function productDelete(): void
     {
-        $productsRepo =  $this->repositoryManager->getRepository('products');
+        $productsRepo =  $this->jsonEntityManager->getRepository('products');
         $product = $productsRepo->getOneById($_POST['product']['id']);
 
         if ($product) {
@@ -96,14 +78,10 @@ final class DashboardController extends AbstractController
         $this->router->redirectToRouteByName('products_list');
     }
 
-    /**
-     * @return void
-     * @throws Exception
-     */
     #[Route('/admin/dashboard/products', 'products_list')]
     public function productsList(): void
     {
-        $categoriesRepo = $this->repositoryManager->getRepository('categories');
+        $categoriesRepo = $this->jsonEntityManager->getRepository('categories');
         $categories = $categoriesRepo->getAll();
 
         $templateData['categories'] = [];
@@ -112,7 +90,7 @@ final class DashboardController extends AbstractController
             $templateData['categories'][$category->id] = $category->name;
         }
 
-        $productsRepo =  $this->repositoryManager->getRepository('products');
+        $productsRepo =  $this->jsonEntityManager->getRepository('products');
         $templateData['products'] = $productsRepo->getAll();
 
         $templateData['pageTitle'] = 'Dashboard';
@@ -120,10 +98,6 @@ final class DashboardController extends AbstractController
         $this->output($templateData);
     }
 
-    /**
-     * @return void
-     * @throws RouteNotFoundException
-     */
     #[Route('/admin/dashboard/products/info', 'product_info')]
     public function productInfo(): void
     {
@@ -133,8 +107,8 @@ final class DashboardController extends AbstractController
         
         $itemId = $_GET['id'];
         
-        $productsRepo = $this->repositoryManager->getRepository('products');
-        $categoriesRepo = $this->repositoryManager->getRepository('categories');
+        $productsRepo = $this->jsonEntityManager->getRepository('products');
+        $categoriesRepo = $this->jsonEntityManager->getRepository('categories');
 
         $templateData['product'] = $productsRepo->getOneById($itemId);
         
@@ -150,15 +124,11 @@ final class DashboardController extends AbstractController
         $this->render($template, $templateData);
     }
 
-    /**
-     * @return void
-     * @throws Exception
-     */
     #[Route('/admin/dashboard/products/add', 'new_product')]
     public function newProduct(): void
     {
-        $productsRepo = $this->repositoryManager->getRepository('products');
-        $categoriesRepo = $this->repositoryManager->getRepository('categories');
+        $productsRepo = $this->jsonEntityManager->getRepository('products');
+        $categoriesRepo = $this->jsonEntityManager->getRepository('categories');
 
         $templateData['product'] = $productsRepo->getBlankItem();
         $templateData['categories'] = $categoriesRepo->getAll();
