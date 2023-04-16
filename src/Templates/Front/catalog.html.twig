@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Bookstore - {{ pageTitle }}</title>
+    <link rel="stylesheet" href="/src/Assets/Front/css/style.css">
+</head>
+<body>
+<div class="header">
+    <h1>"Simple Bookstore" - {{ pageTitle }}</h1>
+</div>
+
+<div class="content">
+    <a class="pagelink" href="/">Homepage </a>
+    <div class="catalog">
+        {% for category in categories %}
+            <h3 class="product-category-title">{{ category.name }}</h3>
+            <div class="product-category">
+                {% for product in products %}
+                    {% if category.id == product.categoryId %}
+                        <div class="product">
+                            <div class="product-image">
+                                <img src="{{ product.image }}" alt="product-image">
+                            </div>
+                            <div class="product-name">{{ product.name }}</div>
+                            <div class="product-price">${{ product.price }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="footer"></div>
+
+</body>
+</html>

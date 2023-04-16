@@ -14,6 +14,6 @@ final class HomepageController extends AbstractController
     {
         $templateData['pageTitle'] = 'Homepage';
 
-        $this->output($templateData);
+        $this->templateEngine->display('Front/homepage', $templateData);
     }
 }
