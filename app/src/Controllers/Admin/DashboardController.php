@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\src\Controllers\Admin;
 
 use CraftyDigit\Puff\Attributes\Controller;
 use CraftyDigit\Puff\Attributes\Route;

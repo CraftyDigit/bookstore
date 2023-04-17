@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "craftydigit/puff",
-            "version": "v0.5",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CraftyDigit/puff.git",
-                "reference": "190da39cb21cfaade18235c02343352fe93f42c4"
+                "reference": "f3b6156fefb5272438c0c06da55824b6269dcb60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CraftyDigit/puff/zipball/190da39cb21cfaade18235c02343352fe93f42c4",
-                "reference": "190da39cb21cfaade18235c02343352fe93f42c4",
+                "url": "https://api.github.com/repos/CraftyDigit/puff/zipball/f3b6156fefb5272438c0c06da55824b6269dcb60",
+                "reference": "f3b6156fefb5272438c0c06da55824b6269dcb60",
                 "shasum": ""
             },
             "require": {
@@ -57,9 +57,9 @@
             ],
             "support": {
                 "issues": "https://github.com/CraftyDigit/puff/issues",
-                "source": "https://github.com/CraftyDigit/puff/tree/v0.5"
+                "source": "https://github.com/CraftyDigit/puff/tree/v0.5.1"
             },
-            "time": "2023-04-15T10:49:17+00:00"
+            "time": "2023-04-17T05:23:02+00:00"
         },
         {
             "name": "doctrine/cache",

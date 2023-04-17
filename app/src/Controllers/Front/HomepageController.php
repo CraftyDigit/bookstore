@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Front;
+namespace App\src\Controllers\Front;
 
 use CraftyDigit\Puff\Attributes\Controller;
 use CraftyDigit\Puff\Attributes\Route;
