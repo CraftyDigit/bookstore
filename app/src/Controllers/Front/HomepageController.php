@@ -1,24 +1,19 @@
 <?php
 
-namespace App\Controllers\Front;
+namespace App\src\Controllers\Front;
 
 use CraftyDigit\Puff\Attributes\Controller;
 use CraftyDigit\Puff\Attributes\Route;
 use CraftyDigit\Puff\Controller\AbstractController;
-use Exception;
 
 #[Controller('homepage')]
 final class HomepageController extends AbstractController
 {
-    /**
-     * @return void
-     * @throws Exception
-     */
     #[Route('/', 'homepage')]
     public function homepage(): void
     {
         $templateData['pageTitle'] = 'Homepage';
 
-        $this->output($templateData);
+        $this->templateEngine->display('Front/homepage', $templateData);
     }
 }
